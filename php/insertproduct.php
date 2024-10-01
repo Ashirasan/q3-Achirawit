@@ -17,6 +17,11 @@
                             <input type="text" class="form-control" name="price">
                             </div>
 
+                            <h6 class="fw-bolder">จำนวนสินค้า</h6>
+                            <div class="mb-3">
+                            <input type="text" class="form-control" name="pnum">
+                            </div>
+
                             <h6 class="fw-bolder">ภาพสินค้า</h6>
                             <div class="mb-3">
                             <input type="file" class="form-control" name="pphoto">
@@ -40,11 +45,13 @@
         $pname = $_POST["pname"];
         $pdetail = $_POST["pdetail"];
         $price = $_POST["price"];
+        $pnum = $_POST["pnum"];
 
-        $insert = $pdo->prepare("INSERT INTO product (pname,pdetail,price) VALUE (?,?,?)");
+        $insert = $pdo->prepare("INSERT INTO product (pname,pdetail,price,pnum) VALUE (?,?,?,?)");
         $insert->bindParam(1,$pname);
         $insert->bindParam(2,$pdetail);
         $insert->bindParam(3,$price);
+        $insert->bindParam(4,$pnum);
         
         if($insert->execute()){
             $pid = $pdo->lastInsertId();
