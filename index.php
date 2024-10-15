@@ -19,11 +19,11 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.php">CS Pharmacy Shop</a>
+                <a class="navbar-brand" href="index.php?action=">CS Pharmacy Shop</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php?action=">Home</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">สินค้า</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -67,7 +67,21 @@
                          ?>
                          <!-- end คำสั่งชื้อ -->
 
+                        <!-- lab11 -->
+                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Lab 11</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="?action=lab11_1">Lecture P14-18</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="?action=lab11_2">Lab AJAX no2</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="?action=lab11_3">Lab JSON 12.1</a></li>
+                            </ul>
+                        </li>
+
+
                     </ul>
+                    <!-- end list -->
                     <div style="padding-left:20px;padding-top:5px">
                         <h5 class="fw-bolder"><?=$_SESSION["name"]?></h5>
                     </div>
@@ -109,8 +123,18 @@
         </header>
         <!-- Section-->
         <section class="py-5">
+        <?php
+            if($_GET["action"]=="lab11_2"){ ?>
+                
+                <label class="px-5"> กรอกชื่อเพื่อค้นหา : <input type="text" name="name" class="" id="searchname" onblur="checkempty()"> 
+                <button class="btn btn-outline-dark mt-auto" onclick="search()">ค้นหา</button>
+                </label>
+                
+        <?php
+            }
+        ?>
         <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="data">
             <?php 
               if($_GET){
                 if($_GET["action"]=="allproduct"){ 
@@ -135,6 +159,16 @@
                     include "./php/order.php";
                 }else if($_GET["action"]=="cart"){
                     include "./php/cart.php";
+                }else if($_GET["action"]=="lab11_1"){
+                    include "./php/lab11_1.php";
+                }else if($_GET["action"]=="lab11_2"){
+                    include "./php/lab11_2.php";
+                }else if($_GET["action"]=="lab11_3"){
+                    include "./php/lab11_3.php";
+                }
+
+                else{ ?>
+                    <div style="height:300px"></div> <?php
                 }
               
 
